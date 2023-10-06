@@ -1,0 +1,49 @@
+/* Enter your custom styles here */
+
+.sapMGT.OneByOne {
+    width: 12rem;
+    height: 9rem;
+}
+
+/*
+.sapMGT.OneByOne {
+    width: 12rem;
+    height: 4rem;
+}
+*/
+
+.sapMTitle.sapMTitleNoWrap {
+    white-space: break-spaces;
+}
+
+.sapMGHLITitle,
+.sapMGHLICounter {
+    font-weight: bold;
+    color: black;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.sapMFlexItemAlignAuto sapMFlexBoxBGTransparent sapMFlexItem {
+    order: 0;
+    flex: 0 1 auto;
+    min-height: auto;
+    min-width: 30%;
+}
+
+
+.sapMLnk {
+    color: #0070b1;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+    font-family: "72",Arial,Helvetica,sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+}

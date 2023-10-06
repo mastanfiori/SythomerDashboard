@@ -1,0 +1,6 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	
+	<App id="App"></App> <!-- App is only for Single Screen , In other words Full Screen -->
+	<!--<SplitApp id="appId"></SplitApp> Split App is for 2 screens , In other words Master - Detail Pages -->
+	<!--<FlexibleColumnLayout></FlexibleColumnLayout> It is for max screens at a time - Master - Detail1 - Detail2 -->
+</mvc:View>

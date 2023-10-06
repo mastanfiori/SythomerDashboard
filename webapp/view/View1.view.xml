@@ -1,0 +1,254 @@
+<mvc:View controllerName="com.fiori.dashboard.zfiori_dashboartd.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns:f="sap.f" xmlns:variants="sap.ui.comp.variants" xmlns:ui="sap.ui.table" xmlns:filterbar="sap.ui.comp.filterbar"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:core="sap.ui.core"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:variant="sap.ui.comp.variants" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:sv="sap.ui.comp.smartvariants" xmlns="sap.m">
+	<Page id="page">
+		<customHeader>
+			<Bar id="searchBar">
+				<contentRight>
+					<Button text="{i18n>createsalesorder}" press="onCreate"></Button>
+					<Button icon="sap-icon://refresh" press="onInit"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Panel class="sapUiLargeMarginBegin sapUiLargeMarginBottom" width="10%" height="0.01%">
+				<Button text="Refresh"></Button>
+			</Panel>
+			<GenericTile width="auto" class="sapUiLargeMarginBegin sapUiLargeMarginBottom tileLayout" header="{i18n>myopenorders}"
+				press="onPressOpenOrder">
+				<TileContent >
+					<NumericContent value="{KPI>/OpenOrder}" withMargin="false"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile width="auto" class="sapUiLargeMarginBegin sapUiLargeMarginBottom" header="{i18n>neworders}" press="onPressNewOrder">
+				<TileContent >
+					<NumericContent value="{KPI>/NewOrder}" withMargin="false"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile width="auto" class="sapUiLargeMarginBegin sapUiLargeMarginBottom" header="{i18n>oncreditblock} " press="onPressCreditBlock">
+				<TileContent >
+					<NumericContent value="{KPI>/CreditBlock}" withMargin="false"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile width="auto" class="sapUiLargeMarginBegin sapUiLargeMarginBottom" header="{i18n>noplannedate}" press="onPressNoPlannedDate">
+				<TileContent >
+					<NumericContent value="{KPI>/NoPlannedDate}" withMargin="false"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile width="auto" class="sapUiLargeMarginBegin sapUiLargeMarginBottom" header="{i18n>ourdelblock}" press="onPressOnDeliveryBlock">
+				<TileContent >
+					<NumericContent value="{KPI>/OnDeliveryBlock}" withMargin="false"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile width="auto" class="sapUiLargeMarginBegin sapUiLargeMarginBottom" header="{i18n>viewall}" press="onPressViewAllOrder">
+				<TileContent>
+					<NumericContent value="{KPI>/ViewAllOrder}" withMargin="false"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile width="auto" class="sapUiLargeMarginBegin sapUiLargeMarginBottom" header="{i18n>Previouslyconfirmed}"
+				press="onPressPreviouslyconfirmed">
+				<TileContent>
+					<NumericContent value="{KPI>/Previouslyconfirmed}" withMargin="false"/>
+				</TileContent>
+			</GenericTile>
+			<smartFilterBar:SmartFilterBar id="smartfilterbar" width="auto" filterbarexpanded="false"
+				class="sapUiLargeMarginBegin sapUiLargeMarginBottom" search="onSearch" entitySet="SO_HeaderSet" persistencyKey="badDebtFilterPersKey"
+				preventInitialDataFetchInValueHelpDialog="false" considerSelectionVariants="true" beforeVariantFetch="onBeforeVariantFetch"
+				afterVariantLoad="onAfterVariantLoad">
+				<smartFilterBar:controlConfiguration >
+					<smartFilterBar:ControlConfiguration id="zem" key="EMPLOYEENAME" label="{i18n>EmployeeName}" index="1" groupId="_BASIC"
+						filterType="multiple"/>
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:controlConfiguration >
+					<smartFilterBar:ControlConfiguration id="salesorg" key="SALESORG" label="{i18n>SalesOrganisation}" index="2" groupId="_BASIC"
+						filterType="multiple"/>
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:controlConfiguration >
+					<smartFilterBar:ControlConfiguration id="Vbeln" key="VBELN" label="{i18n>SalesOrder}" index="3" groupId="_BASIC" filterType="multiple"/>
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:controlConfiguration >
+					<smartFilterBar:ControlConfiguration id="soldto" key="SOLDTOPARTY" label="{i18n>Soldto}" index="4" groupId="_BASIC" filterType="multiple"></smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:controlConfiguration >
+					<smartFilterBar:ControlConfiguration id="shipto" key="SHIPTOPARTY" label="{i18n>Shipto}" index="5" groupId="_BASIC" filterType="multiple"></smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:controlConfiguration >
+					<smartFilterBar:ControlConfiguration id="material" key="MATERIAL" label="{i18n>Material}" index="6" groupId="_BASIC" filterType="multiple"></smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:controlConfiguration >
+					<smartFilterBar:ControlConfiguration id="reqdeldate" key="REQUESTEDDELIVERYDATE" label="{i18n>RequestedDeliveryDate}" index="7"
+						groupId="_BASIC" filterType="single">
+						<smartFilterBar:customControl>
+							<DateRangeSelection id="reqdeldate1" width="auto" displayFormat="short" required="false" enabled="true" visible="true"
+								valueFormat="yyyyMMdd"/>
+						</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:controlConfiguration >
+					<smartFilterBar:ControlConfiguration id="pladeldat1" key="PLANNEDDELIVERYDATE" label="{i18n>PlannedDeliveryDate}" index="8" groupId="_BASIC"
+						filterType="single">
+						<smartFilterBar:customControl>
+							<DateRangeSelection id="pladeldate" width="auto" displayFormat="short" required="false" enabled="true" visible="true" valueFormat="yyyyMMdd"/>
+						</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:controlConfiguration >
+					<smartFilterBar:ControlConfiguration id="pladisdat1" key="PLANNEDDISPATCHDATE" label="{i18n>PlannedDispatchDate}" index="9" groupId="_BASIC"
+						filterType="multiple">
+						<smartFilterBar:customControl>
+							<DateRangeSelection id="pladisdate" width="auto" displayFormat="short" required="false" enabled="true" visible="true" valueFormat="yyyyMMdd"/>
+						</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:controlConfiguration >
+					<smartFilterBar:ControlConfiguration id="credstatus" key="CREDITSTATUS" label="{i18n>creditstatus}" index="10" groupId="_BASIC"
+						filterType="single">
+						<smartFilterBar:customControl>
+							<MultiComboBox id="loadingstatus">
+								<items>
+									<core:Item key="" text="{i18n>text}"/>
+									<core:Item key="A" text="{i18n>text1}"/>
+									<core:Item key="B" text="{i18n>text2}"/>
+									<core:Item key="C"  text="{i18n>text3}"/>
+									<core:Item key="D"  text="{i18n>text4}"/>
+								</items>
+							</MultiComboBox>
+						</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:controlConfiguration >
+					<smartFilterBar:ControlConfiguration id="atpstatus" key="ATPSTATUS" label="{i18n>atpstatus}" index="11" groupId="_BASIC" filterType="single">
+						<smartFilterBar:customControl>
+							<MultiComboBox id="ATPSTATUS">
+								<items>
+									<core:Item key="B" text="{i18n>NotConfirmed}"/>
+									<core:Item key="A" text="{i18n>Confirmed}"/>
+								</items>
+							</MultiComboBox>
+						</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:controlConfiguration >
+					<smartFilterBar:ControlConfiguration id="raagstatus" key="RAGSTATUS" label="{i18n>RAGSTATUS}" index="12" groupId="_BASIC"
+						filterType="multiple">
+						<smartFilterBar:customControl>
+							<MultiComboBox id="RAGSTATUS">
+								<items>
+									<core:Item key="R" text="{i18n>Red}"/>
+									<core:Item key="G" text="{i18n>Green}"/>
+									<core:Item key="A" text="{i18n>Amber}"/>
+								</items>
+							</MultiComboBox>
+						</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration id="ordertype" key="ORDERTYPE" label="{i18n>ordertype}" index="13" groupId="_BASIC"
+						filterType="multiple"></smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration id="Plant" key="PLANT" label="{i18n>Plant}" index="14" groupId="_BASIC" filterType="multiple"></smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+			</smartFilterBar:SmartFilterBar>
+			<smartTable:SmartTable id="smrtTblSpecificBadDebt1" entitySet="SO_HeaderSet" useExportToExcel="true" useVariantManagement="true"
+				smartFilterId="smartFilterBar" useTablePersonalisation="true" showRowCount="true" persistencyKey="badDebtFilterPersKey1"
+				class="sapUiLargeMarginBegin sapUiLargeMarginBottom" enableAutoBinding="true" tableType="ResponsiveTable" demandPopin="false"
+				ignoredFields="" beforeRebindTable="onDataGet" visibleRowCount='10'
+				requestAtLeastFields="SOLDTOPARTYNAME,TOTALVALUE,CREATEDBY,SHIPPINGTYPENAME,INCOTERMS,SHIPPINGPOINTNAME,CREATEDBY,SALESORGANIZATIONNAME,ERDAT,PLANT,CARRIERNAME,ADDRESS,CITY,STREET,REGION,POSTALCODE,COUNTRY,USERFULLNAME,DELIVERYBLOCKREASONTEXT,DEPARTMENT,Currency,DISPATCHCOLOR,DELIVERYCOLOR,RAGCOLOR,AVLQTY,AUTHNOTE"
+				initiallyVisibleFields="CVBELN,LINEITEM,SOLDTOPARTY,SHIPTOPARTY,MATERIAL">
+				<Table id="treeTable1" growing="true" mode="SingleSelectMaster" selectionChange="onTableRowSelect">
+					<columns>
+						<Column id="oSales">
+							<customData>
+								<core:CustomData id="idoSales" key="p13nData"
+									value='\{"columnKey": "VBELN", "autoColumnWidth": \{ "visibleProperty": "VBELN" }, "columnIndex": 0, "leadingProperty": "VBELN", "sortProperty": "VBELN", "additionalProperty": "VBELN", "description": "VBELN", "VBELN": "descriptionOnly", "width": "360px"}'/>
+							</customData>
+							<Text id="_IDEGen_textVB" width="8rem" text="{i18n>vbeln}"/>
+						</Column>
+						<Column id="oShiptoname">
+							<customData>
+								<core:CustomData id="idoShiptoname" key="p13nData"
+									value='\{"columnKey": "SHIPTONAME", "autoColumnWidth": \{ "visibleProperty": "SHIPTONAME" }, "columnIndex": 4, "leadingProperty": "SHIPTONAME", "sortProperty": "SHIPTONAME", "additionalProperty": "SHIPTONAME", "description": "SHIPTONAME", "SHIPTONAME": "descriptionOnly", "width": "360px"}'/>
+							</customData>
+							<Text id="_IDEGen_textShiptoname" width="8rem" text="{i18n>SHIPTONAME}"/>
+						</Column>
+						<Column id="REQUESTEDDELIVERYDATEid">
+							<customData>
+								<core:CustomData id="idREQUESTEDDELIVERYDATE" key="p13nData"
+									value='\{"columnKey": "REQUESTEDDELIVERYDATE", "autoColumnWidth": \{ "visibleProperty": "REQUESTEDDELIVERYDATE" }, "columnIndex": 6, "leadingProperty": "REQUESTEDDELIVERYDATE", "sortProperty": "REQUESTEDDELIVERYDATE", "additionalProperty": "ATPSTATUS", "description": "ATPSTATUS", "REQUESTEDDELIVERYDATE": "descriptionOnly", "width": "360px"}'/>
+							</customData>
+							<Text id="_IDEGen_text1" width="8rem" text="{i18n>RequestedDeliveryDate}"/>
+						</Column>
+						<Column id="PLANNEDDELIVERYDATEid" hAlign="Begin">
+							<customData>
+								<core:CustomData id="idPLANNEDDELIVERYDATE" key="p13nData"
+									value='\{"columnKey": "PLANNEDDELIVERYDATE", "autoColumnWidth": \{ "visibleProperty": "PLANNEDDELIVERYDATE" }, "columnIndex": 7, "leadingProperty": "PLANNEDDELIVERYDATE", "sortProperty": "PLANNEDDELIVERYDATE", "additionalProperty": "PLANNEDDELIVERYDATE", "description": "PLANNEDDELIVERYDATE", "PLANNEDDELIVERYDATE": "descriptionOnly", "width": "360px"}'/>
+							</customData>
+							<Text id="_IDEGen_text2" text="{i18n>PlannedDeliveryDate}"/>
+						</Column>
+						<Column id="PLANNEDDISPATCHDATEid" hAlign="Begin">
+							<customData>
+								<core:CustomData id="idPLANNEDDISPATCHDATE" key="p13nData"
+									value='\{"columnKey": "PLANNEDDISPATCHDATE", "autoColumnWidth": \{ "visibleProperty": "PLANNEDDISPATCHDATE" }, "columnIndex":8, "leadingProperty": "PLANNEDDISPATCHDATE", "sortProperty": "PLANNEDDISPATCHDATE", "additionalProperty": "PLANNEDDISPATCHDATE", "description": "PLANNEDDISPATCHDATE", "PLANNEDDISPATCHDATE": "descriptionOnly", "width": "360px"}'/>
+							</customData>
+							<Text id="_IDEGen_text3" text="{i18n>PlannedDispatchDate}"/>
+						</Column>
+						<Column id="CREDITSTATUSID" hAlign="Begin">
+							<customData>
+								<core:CustomData id="idCREDITSTATUS" key="p13nData"
+									value='\{"columnKey": "CREDITSTATUS", "autoColumnWidth": \{ "visibleProperty": "CREDITSTATUS" }, "columnIndex": 9, "leadingProperty": "CREDITSTATUS", "sortProperty": "CREDITSTATUS", "additionalProperty": "CREDITSTATUS", "description": "CREDITSTATUS", "displayBehaviour": "descriptionOnly", "width": "360px"}'/>
+							</customData>
+							<Text id="_IDEGen_text4" text="{i18n>CreditStatus}"/>
+						</Column>
+						<Column id="ApprovaStatus" hAlign="Begin">
+							<customData>
+								<core:CustomData id="approvarcustomata" key="p13nData"
+									value='\{"columnKey": "ATPSTATUS", "autoColumnWidth": \{ "visibleProperty": "ATPSTATUS" }, "columnIndex": 12, "leadingProperty": "ATPSTATUS", "sortProperty": "ATPSTATUS", "additionalProperty": "ATPSTATUS", "description": "ATPSTATUS", "displayBehaviour": "descriptionOnly", "width": "360px"}'/>
+							</customData>
+							<Text id="_IDEGen_text5" text="{i18n>ATPStatus}"/>
+						</Column>
+						<Column id="SHIPPINGCONFIRMEDid" hAlign="Begin">
+							<customData>
+								<core:CustomData id="idSHIPPINGCONFIRMED" key="p13nData"
+									value='\{"columnKey": "SHIPPINGCONFIRMED", "autoColumnWidth": \{ "visibleProperty": "SHIPPINGCONFIRMED" }, "columnIndex": 13, "leadingProperty": "SHIPPINGCONFIRMED", "sortProperty": "SHIPPINGCONFIRMED", "additionalProperty": "SHIPPINGCONFIRMED", "description": "SHIPPINGCONFIRMED", "displayBehaviour": "descriptionOnly", "width": "360px"}'/>
+							</customData>
+							<Text id="_IDEGen_text6" text="{i18n>ShipmentConfirmed}"/>
+						</Column>
+						<Column id="buttonID" hAlign="Center">
+							<customData>
+								<core:CustomData id="Count" key="p13nData"
+									value='\{"columnKey": "NOTIFACTION", "autoColumnWidth": \{ "visibleProperty": "NOTIFACTION" }, "columnIndex": 14, "leadingProperty": "NOTIFACTION", "sortProperty": "NOTIFACTION", "additionalProperty": "NOTIFACTION", "description": "NOTIFACTION", "displayBehaviour": "descriptionOnly", "width": "360px"}'/>
+							</customData>
+							<Button icon="sap-icon://bell" type="Transparent" id="rr"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem id="Approveclaim"
+							highlight="{parts:[{path:'ATPSTATUS'},{path:'CREDITSTATUS'},{path:'SHIPPINGCONFIRMED'},{path:'DISPATCHCOLOR'},{path:'DELIVERYCOLOR'},{path:'REQUESTEDDELIVERYDATE'},{path:'PLANNEDDELIVERYDATE'},{path:'RAGCOLOR'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setRowColor'}">
+							<cells>
+								<Link text="{VBELN}" press="handleOperationLinkPress"></Link>
+								<Text text="{SHIPTONAME}"></Text>
+								<ObjectStatus text="{parts:[{path:'REQUESTEDDELIVERYDATE'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDate'}"
+									state="{parts:[{path:'REQUESTEDDELIVERYDATE'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDateColor'}"></ObjectStatus>
+								<ObjectStatus text="{PLANNEDDELIVERYDATE}"
+									state="{parts:[{path:'AVLQTY'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDateColorAlv'}"></ObjectStatus>
+								<ObjectStatus text="{PLANNEDDISPATCHDATE}"
+									state="{parts:[{path:'AVLQTY'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDateColorAlv'}"></ObjectStatus>
+								<ObjectStatus state="{parts:[{path:'CREDITSTATUS'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setStatusColor'}"
+									text="{parts:[{path:'CREDITSTATUS'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setStatusValue'}"></ObjectStatus>
+								<ObjectStatus state="{parts:[{path:'ATPSTATUS'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setATPColor'}"
+									text="{parts:[{path:'ATPSTATUS'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setATPStatus'}"></ObjectStatus>
+								<ObjectStatus
+									state="{parts:[{path:'SHIPPINGCONFIRMED'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setStatusColorShip'}"
+									text="{parts:[{path:'SHIPPINGCONFIRMED'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setStatusValueShip'}"></ObjectStatus>
+								<CheckBox id="oCheck" select="onSelected" selected="{NOTIFACTION}" hAlign="End"></CheckBox>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</smartTable:SmartTable>
+		</content>
+	</Page>
+</mvc:View>

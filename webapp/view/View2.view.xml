@@ -1,0 +1,295 @@
+<!DOCTYPE XML>
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.fiori.dashboard.zfiori_dashboartd.controller.View2" xmlns="sap.uxap"
+	xmlns:layout="sap.ui.layout" xmlns:m="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:variant="sap.ui.comp.variants" xmlns:e="sap.suite.ui.commons"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar">
+	<!-- caution.. Don't change tabs, in view2 controller 'onroutematched' hiding notes based on Tab sequence
+	if Tabs want to add or change adjust accordingly -->
+	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" headerContentPinnable="true" preserveHeaderStateOnScroll="true">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<actions>
+					<m:Button icon="sap-icon://refresh" press="onRefresh"/>
+				</actions>
+				<expandedHeading>
+					<layout:HorizontalLayout width="auto" class="sapUiLargeMarginBegin sapUiLargeMarginBottom">
+						<f:SimpleForm id="SimpleFormChange480_1212052">
+							<f:content>
+								<m:Link text="{i18n>salesOrder}{zorderdetails>/VBELN}" press="handleOperationLinkPress" width="10rem" textDirection="LTR" textAlign="Left"/>
+							</f:content>
+						</f:SimpleForm>
+						<f:SimpleForm id="SimpleFormChange480_121206">
+							<f:content>
+								<m:Text text="Protif Details:" design="Bold"/>
+							</f:content>
+						</f:SimpleForm>
+						<f:SimpleForm id="SimpleFormChange480_12120">
+							<f:content>
+								<m:ObjectStatus title="{i18n>creditStatus}"
+									state="{parts:[{path:'zorderdetails>/CREDITSTATUS'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setStatusColor'}"
+									text="{parts:[{path:'zorderdetails>/CREDITSTATUS'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setStatusValue'}"/>
+							</f:content>
+						</f:SimpleForm>
+						<f:SimpleForm id="SimpleFormChange480_121201">
+							<f:content>
+								<m:ObjectStatus
+									state="{parts:[{path:'zorderdetails>/ATPSTATUS'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setATPColor'}"
+									text="{parts:[{path:'zorderdetails>/ATPSTATUS'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setATPStatus'}"
+									title="{i18n>atpstatus}"/>
+							</f:content>
+						</f:SimpleForm>
+						<f:SimpleForm id="SimpleFormChange480_121202">
+							<f:content>
+								<m:ObjectStatus title="{i18n>shippingconfirmed}"
+									state="{parts:[{path:'zorderdetails>/SHIPPINGCONFIRMED'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setStatusColorShip'}"
+									text="{parts:[{path:'zorderdetails>/SHIPPINGCONFIRMED'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setStatusValueShip'}"/>
+							</f:content>
+						</f:SimpleForm>
+					</layout:HorizontalLayout>
+				</expandedHeading>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+		<headerContent>
+			<m:FlexBox>
+				<!--
+					<f:SimpleForm id="SimpleFormDisplayColumn_threeGroups236" editable="false" labelSpanXL="5" labelSpanL="5" labelSpanM="6" labelSpanS="6"
+				columnsM="2" columnsL="4" columnsXL="4" emptySpanXL="0" emptySpanL="0" layout="ResponsiveGridLayout">
+				<f:content>
+					<core:Title text="Order details"/>
+					<Label text="Sold to" textAlign="Begin"/>
+					<Text id="nameText" text="{ZDETAIL>/SoldToPartyName} {i18n>comma} {ZDETAIL>/SoldToParty} {i18n>comma} {ZDETAIL>/Country}"/>
+					<Label text="Total Value"/>
+					<Text text="{ZDETAIL>/TotalValue} {ZDETAIL>/Currency}"/>
+					<Label text="Order Created"/>
+					<ObjectStatus text="{parts:[{path:'ZDETAIL>/CreationDate'}],formatter:'.formatter.setDate'}"
+						state="{parts:[{path:'ZDETAIL>/CreationDate'}],formatter:'.formatter.setDateColor'}"></ObjectStatus>
+					<Label text="Order Created By"/>
+					<Text id="countryText" text="{ZDETAIL>/CreatedBy}"/>
+					<Label text="International Order"/>
+					<Text text="{parts:[{path:'ZDETAIL>/InternationalOrder'}],formatter:'.formatter.setInternational'}"/>
+					<core:Title text="Credit Information"/>
+					<Label text="Payer"/>
+					<Text text="{ZDETAIL>/PayerName} {i18n>comma} {ZDETAIL>/Payer} {i18n>comma} {ZDETAIL>/PayerCountry}"/>
+					<Label text="Payment Terms"/>
+					<Text text="{ZDETAIL>/PaymentTermText}"/>
+					<Label text="Risk category"/>
+					<Text text="{ZDETAIL>/RiskCategory}"/>
+					<Label text="Credit Check rule"/>
+					<Text text="{ZDETAIL>/CreditCheckRule}"/>
+					<Label text="Credit limit"/>
+					<Text text="{ZDETAIL>/CreditLimit} {ZDETAIL>/Currency}"/>
+					<Label text="Credit limit Used"/>
+					<Text text="{ZDETAIL>/CreditLimitUtilized} {ZDETAIL>/Currency}"/>
+					<core:Title text="Dates"/>
+					<Label text="Requested Delivery date"/>
+					<ObjectStatus text="{parts:[{path:'ZDETAIL>/RequestedDeliveryDate'}],formatter:'.formatter.setDate'}"
+						state="{parts:[{path:'ZDETAIL>/RequestedDeliveryDate'}],formatter:'.formatter.setDateColor'}"></ObjectStatus>
+					<Label text="Planned delivery date"/>
+					<ObjectStatus text="{parts:[{path:'ZDETAIL>/PlannedDeliveryDate'}],formatter:'.formatter.setDate'}"
+						state="{parts:[{path:'ZDETAIL>/PlannedDeliveryDate'}],formatter:'.formatter.setDateColor'}"></ObjectStatus>
+					<Label text="Planned dispatch date"/>
+					<ObjectStatus text="{parts:[{path:'ZDETAIL>/PlannedDispatchDate'}],formatter:'.formatter.setDate'}"
+						state="{parts:[{path:'ZDETAIL>/PlannedDispatchDate'}],formatter:'.formatter.setDateColor'}"></ObjectStatus>
+					<Label text="Latest release date"/>
+					<ObjectStatus text="{parts:[{path:'ZDETAIL>/LatestReleaseDate'}],formatter:'.formatter.setDate'}"
+						state="{parts:[{path:'ZDETAIL>/LatestReleaseDate'}],formatter:'.formatter.setDateColor'}"></ObjectStatus>
+					<Text text=" {RelaseDateOverdue}"></Text>
+					<core:Title text="Delivery details"/>
+					<Label text="Shipping type"/>
+					<Text text="{ZDETAIL>/ShippingType}"/>
+					<Label text="Carrier name"/>
+					<Text text="{ZDETAIL>/CarrierName}"/>
+					<Label text="Ship to"/>
+					<Text text="{ZDETAIL>/Address} {i18n>comma} {ZDETAIL>/Street} {i18n>comma} {ZDETAIL>/CityName} {i18n>comma} {ZDETAIL>/Region}"/>
+					<Label text="Country Code"/>
+					<Text text="{ZDETAIL>/Country}"/>
+				</f:content>
+			</f:SimpleForm>
+				-->
+				<layout:VerticalLayout width="auto" class="sapUiLargeMarginBegin sapUiLargeMarginBottom">
+					<m:Label text="{i18n>orderdetails}" design="Bold"></m:Label>
+					<m:Label text="" design="Bold"></m:Label>
+					<m:ObjectStatus title="{i18n>Soldto}"/>
+					<m:ObjectStatus title="{i18n>LineItems}"/>
+					<m:ObjectStatus title="{i18n>totalvalue}"/>
+					<m:ObjectStatus title="{i18n>ordercreated}"/>
+					<m:ObjectStatus title="{i18n>ordercreatedby}"/>
+					<m:ObjectStatus title="{i18n>SalesOrganisation}"/>
+					<m:ObjectStatus title="{i18n>Shippingpoint}"/>
+					<m:ObjectStatus title="{i18n>Plant}"/>
+					<m:ObjectStatus title="{i18n>IncoTerms}"/>
+				</layout:VerticalLayout>
+				<layout:VerticalLayout width="auto" class="sapUiLargeMarginBegin sapUiLargeMarginBottom">
+					<m:Label text="" design="Bold"></m:Label>
+					<m:Label text="" design="Bold"></m:Label>
+					<m:ObjectStatus text="{zorderdetails>/SOLDTOPARTYNAME}"/>
+					<m:ObjectStatus text="{zorderdetailsitem>/LINEITEM} "/>
+					<m:ObjectStatus text="{zorderdetails>/TOTALVALUE} {zorderdetails>/Currency}"/>
+					<m:ObjectStatus text="{parts:[{path:'zorderdetails>/ERDAT'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDate'}"/>
+					<m:ObjectStatus text="{zorderdetails>/CREATEDBY}"/>
+					<m:ObjectStatus text="{zorderdetails>/SALESORGANIZATIONNAME}"/>
+					<m:ObjectStatus text="{zorderdetails>/SHIPPINGPOINTNAME}"/>
+					<m:ObjectStatus text="{zorderdetails>/PLANT}"/>
+					<m:ObjectStatus text="{zorderdetails>/INCOTERMS}"/>
+				</layout:VerticalLayout>
+				<layout:VerticalLayout width="auto" class="sapUiLargeMarginBegin sapUiLargeMarginBottom">
+					<m:Label text="Dates" design="Bold"></m:Label>
+					<m:Label text="" design="Bold"></m:Label>
+					<m:ObjectStatus title="{i18n>RequestedDeliveryDate}"></m:ObjectStatus>
+					<m:ObjectStatus title="{i18n>PlannedDeliveryDate}"></m:ObjectStatus>
+					<m:ObjectStatus title="{i18n>PlannedDispatchDate}"></m:ObjectStatus>
+				</layout:VerticalLayout>
+				<layout:VerticalLayout class="sapUiLargeMarginBegin sapUiLargeMarginBottom">
+					<m:Label text="" design="Bold"></m:Label>
+					<m:Label text="" design="Bold"></m:Label>
+					<m:ObjectStatus
+						text="{parts:[{path:'zorderdetails>/REQUESTEDDELIVERYDATE'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDate'}"
+						state="{parts:[{path:'zorderdetails>/REQUESTEDDELIVERYDATE'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDateColor'}"></m:ObjectStatus>
+					<m:ObjectStatus
+						text="{parts:[{path:'zorderdetails>/PLANNEDDELIVERYDATE'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDate'}"
+						state="{parts:[{path:'zorderdetails>/AVLQTY'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDateColorAlv1'}"></m:ObjectStatus>
+					<m:ObjectStatus
+						text="{parts:[{path:'zorderdetails>/PLANNEDDISPATCHDATE'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDate'}"
+						state="{parts:[{path:'zorderdetails>/AVLQTY'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDateColorAlv1'}"></m:ObjectStatus>
+				</layout:VerticalLayout>
+				<layout:VerticalLayout width="auto" class="sapUiLargeMarginBegin sapUiLargeMarginBottom">
+					<m:Label text="{i18n>DeliveryDetails}" design="Bold"></m:Label>
+					<m:Label text="" design="Bold"></m:Label>
+					<m:ObjectStatus title="{i18n>ShippingType}"/>
+					<m:ObjectStatus title="{i18n>CarrierName}"/>
+					<m:ObjectStatus title="{i18n>Shipto}"/>
+				</layout:VerticalLayout>
+				<layout:VerticalLayout width="auto" class="sapUiLargeMarginBegin sapUiLargeMarginBottom">
+					<m:Label text="" design="Bold"></m:Label>
+					<m:Label text="" design="Bold"></m:Label>
+					<m:ObjectStatus text="{zorderdetails>/SHIPPINGTYPENAME}"/>
+					<m:ObjectStatus text="{zorderdetails>/CARRIERNAME}"/>
+					<m:ObjectStatus text="{zorderdetails>/ADDRESS}"/>
+					<m:ObjectStatus text="{zorderdetails>/STREET}"/>
+					<m:ObjectStatus text="{zorderdetails>/CITY}"/>
+					<m:ObjectStatus text="{zorderdetails>/REGION}"/>
+					<m:ObjectStatus text="{zorderdetails>/POSTALCODE}"/>
+					<m:ObjectStatus text="{zorderdetails>/COUNTRY}"/>
+				</layout:VerticalLayout>
+			</m:FlexBox>
+		</headerContent>
+		<sections>
+			<ObjectPageSection titleUppercase="false" id="goalsSection">
+				<subSections>
+					<ObjectPageSubSection id="goalsSectionSS1" titleUppercase="false" title="{i18n>LineItems}">
+						<blocks>
+							<smartTable:SmartTable id="smrtTblSpecificBadDebt" entitySet="SO_HeaderSet" useExportToExcel="true" useVariantManagement="true"
+								smartFilterId="smartFilterBar" useTablePersonalisation="true" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored"
+								enableAutoBinding="true" class="sapUiResponsiveContentPadding" tableType="ResponsiveTable" demandPopin="false" ignoredFields=""
+								beforeRebindTable="onProces"
+								requestAtLeastFields="VBELN,CREDITSTATUS,ATPSTATUS,SHIPPINGCONFIRMED,DISPATCHCOLOR,DELIVERYCOLOR,SOLDTOPARTYNAME,TOTALVALUE,Currency,ERDAT,CREATEDBY,SALESORGANIZATIONNAME,SHIPPINGPOINTNAME,PLANT,INCOTERMS,SHIPPINGTYPENAME,CARRIERNAME,ADDRESS,STREET,CITY,REGION,POSTALCODE,COUNTRY,DELIVERYBLOCKREASONTEXT,AVLQTY,AUTHNOTE"
+								initiallyVisibleFields="LINEITEM,UOM,Currency">
+								<m:Table id="treeTable2" growing="true" mode="SingleSelectMaster" selectionChange="onTableRowSelect">
+									<m:columns>
+										<m:Column id="MATERIALNAMEid" width="20rem">
+											<m:customData>
+												<core:CustomData id="IDMATERIALNAME" key="p13nData"
+													value='\{"columnKey": "MATERIALNAME", "autoColumnWidth": \{ "visibleProperty": "MATERIALNAME" }, "columnIndex": 1, "leadingProperty": "MATERIALNAME", "sortProperty": "MATERIALNAME", "additionalProperty": "MATERIALNAME", "description": "MATERIALNAME", "MATERIALNAME": "descriptionOnly", "width": "360px"}'/>
+											</m:customData>
+											<m:Text id="_IDEGen_text1123" text="{i18n>Material}"/>
+										</m:Column>
+										<m:Column id="ORDERQUANTITYid" hAlign="End">
+											<m:customData>
+												<core:CustomData id="idORDERQUANTITY" key="p13nData"
+													value='\{"columnKey": "ORDERQUANTITY", "autoColumnWidth": \{ "visibleProperty": "ORDERQUANTITY" }, "columnIndex": 2, "leadingProperty": "ORDERQUANTITY", "sortProperty": "ORDERQUANTITY", "additionalProperty": "ORDERQUANTITY", "description": "ORDERQUANTITY", "ORDERQUANTITY": "descriptionOnly", "width": "360px"}'/>
+											</m:customData>
+											<m:Text id="_IDEGen_text112" width="8rem" text="{i18n>ORDERQUANTITY}"/>
+										</m:Column>
+										<m:Column id="PRICEid" hAlign="End">
+											<m:customData>
+												<core:CustomData id="idPRICE" key="p13nData"
+													value='\{"columnKey": "PRICE", "autoColumnWidth": \{ "visibleProperty": "PRICE" }, "columnIndex":4, "leadingProperty": "PRICE", "sortProperty": "PRICE", "additionalProperty": "PRICE", "description": "PRICE", "ORDERQUANTITY": "descriptionOnly", "width": "360px"}'/>
+											</m:customData>
+											<m:Text id="_IDEGen_text113" width="8rem" text="{i18n>PRICE}"/>
+										</m:Column>
+										<m:Column id="REQUESTEDDELIVERYDATEid">
+											<m:customData>
+												<core:CustomData id="idREQUESTEDDELIVERYDATE" key="p13nData"
+													value='\{"columnKey": "REQUESTEDDELIVERYDATE", "autoColumnWidth": \{ "visibleProperty": "REQUESTEDDELIVERYDATE" }, "columnIndex": 8, "leadingProperty": "REQUESTEDDELIVERYDATE", "sortProperty": "REQUESTEDDELIVERYDATE", "additionalProperty": "ATPSTATUS", "description": "ATPSTATUS", "REQUESTEDDELIVERYDATE": "descriptionOnly", "width": "360px"}'/>
+											</m:customData>
+											<m:Text id="_IDEGen_text1" width="8rem" text="{i18n>RequestedDeliveryDate}"/>
+										</m:Column>
+										<m:Column id="PLANNEDDELIVERYDATEid" hAlign="Begin">
+											<m:customData>
+												<core:CustomData id="idPLANNEDDELIVERYDATE" key="p13nData"
+													value='\{"columnKey": "PLANNEDDELIVERYDATE", "autoColumnWidth": \{ "visibleProperty": "PLANNEDDELIVERYDATE" }, "columnIndex": 9, "leadingProperty": "PLANNEDDELIVERYDATE", "sortProperty": "PLANNEDDELIVERYDATE", "additionalProperty": "PLANNEDDELIVERYDATE", "description": "PLANNEDDELIVERYDATE", "PLANNEDDELIVERYDATE": "descriptionOnly", "width": "360px"}'/>
+											</m:customData>
+											<m:Text id="_IDEGen_text2" text="{i18n>PlannedDeliveryDate}"/>
+										</m:Column>
+										<m:Column id="PLANNEDDISPATCHDATEid" hAlign="Begin">
+											<m:customData>
+												<core:CustomData id="idPLANNEDDISPATCHDATE" key="p13nData"
+													value='\{"columnKey": "PLANNEDDISPATCHDATE", "autoColumnWidth": \{ "visibleProperty": "PLANNEDDISPATCHDATE" }, "columnIndex":10, "leadingProperty": "PLANNEDDISPATCHDATE", "sortProperty": "PLANNEDDISPATCHDATE", "additionalProperty": "PLANNEDDISPATCHDATE", "description": "PLANNEDDISPATCHDATE", "PLANNEDDISPATCHDATE": "descriptionOnly", "width": "360px"}'/>
+											</m:customData>
+											<m:Text id="_IDEGen_text3" text="{i18n>PlannedDispatchDate}"/>
+										</m:Column>
+									</m:columns>
+									<m:items>
+										<m:ColumnListItem id="Approveclaim"
+											highlight="{parts:[{path:'ATPSTATUS'},{path:'CREDITSTATUS'},{path:'SHIPPINGCONFIRMED'},{path:'DISPATCHCOLOR'},{path:'DELIVERYCOLOR'},{path:'REQUESTEDDELIVERYDATE'},{path:'PLANNEDDELIVERYDATE'},{path:'RAGCOLOR'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setRowColor'}">
+											<m:cells>
+												<m:Text text="{MATERIALNAME}"></m:Text>
+												<m:Text text="{ORDERQUANTITY}"></m:Text>
+												<m:Text text="{PRICE}"></m:Text>
+												<m:ObjectStatus text="{parts:[{path:'REQUESTEDDELIVERYDATE'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDate'}"
+													state="{parts:[{path:'REQUESTEDDELIVERYDATE'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDateColor'}"></m:ObjectStatus>
+												<m:ObjectStatus text="{parts:[{path:'PLANNEDDELIVERYDATE'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDate'}"
+													state="{parts:[{path:'AVLQTY'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDateColorAlv'}"></m:ObjectStatus>
+												<m:ObjectStatus text="{parts:[{path:'PLANNEDDISPATCHDATE'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDate'}"
+													state="{parts:[{path:'AVLQTY'}],formatter:'com.fiori.dashboard.zfiori_dashboartd.model.Formatter.setReqDateColorAlv'}"></m:ObjectStatus>
+											</m:cells>
+										</m:ColumnListItem>
+									</m:items>
+								</m:Table>
+							</smartTable:SmartTable>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection id="SugRetailTab3" titleUppercase="false" title="{i18n>OrderHistory}">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<e:ProcessFlow id="processflow2" scrollable="true" nodes="{pf2>/nodes}" lanes="{pf2>/lanes}" headerPress="onHeaderPress"
+								wheelZoomable="false">
+								<e:nodes>
+									<e:ProcessFlowNode laneId="{pf2>lane}" nodeId="{pf2>id}" title="{pf2>title}" children="{pf2>children}" state="{pf2>state}"
+										stateText="{pf2>stateText}" texts="{pf2>texts}" focused="{pf2>focused}"/>
+								</e:nodes>
+								<e:lanes>
+									<e:ProcessFlowLaneHeader laneId="{pf2>id}" iconSrc="{pf2>icon}" text="{pf2>label}" position="{pf2>position}" state="{pf2>state}"/>
+								</e:lanes>
+							</e:ProcessFlow>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection id="SugRetailTab" titleUppercase="false" title="{i18n>Notes} ({CountNotesNo>/})">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:FeedInput post="onPost" icon=""/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection id="SugRetailTab1" titleUppercase="false" title="{i18n>NotesDetails}">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:List showSeparators="Inner" items="{EntryCollection>/}">
+								<m:FeedListItem sender="{EntryCollection>AUTHOR}" info="{EntryCollection>Type}" timestamp="{EntryCollection>Date}"
+									text="{EntryCollection>Notetext}" convertLinksToAnchorTags="All"/>
+							</m:List>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</mvc:View>

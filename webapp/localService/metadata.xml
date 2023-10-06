@@ -1,0 +1,17 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZPROTIF_KPI_TILES_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="SO_Header" sap:content-version="1">
+				<Key><PropertyRef Name="VBELN"/></Key><Property Name="OpenOrder" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Open Order" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="NewOrder" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="New Order" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CreditBlock" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Credit Block" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="NoPlannedDate" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="No Planned Date" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="OnDeliveryBlock" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="On Delivery Block" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ViewAllOrder" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="View All Order" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ERDAT" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Creation Date" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="VBELN" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Sales Order No" sap:filterable="false"/></EntityType>
+			<EntityContainer Name="ZPROTIF_KPI_TILES_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="SO_HeaderSet" EntityType="ZPROTIF_KPI_TILES_SRV.SO_Header" sap:deletable="false" sap:pageable="false"
+				sap:addressable="false" sap:content-version="1"/></EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZPROTIF_KPI_TILES_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZPROTIF_KPI_TILES_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
